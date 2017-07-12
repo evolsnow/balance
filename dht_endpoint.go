@@ -7,20 +7,20 @@ import (
 	"google.golang.org/grpc/grpclog"
 )
 
-type endpoint struct {
+type dhtEndpoint struct {
 	addr      grpc.Address
 	connected bool
-	parent    *endpoint
+	parent    *dhtEndpoint
 	score     uint32
 }
 
-type ring []*endpoint
+type ring []*dhtEndpoint
 
 func (r ring) sort() {
 	sort.Slice(r, func(i, j int) bool { return r[i].score < r[j].score })
 }
 
-func (r ring) choose(score uint32) *endpoint {
+func (r ring) choose(score uint32) *dhtEndpoint {
 	idx := sort.Search(len(r), func(i int) bool { return r[i].score >= score })
 	if idx >= len(r) {
 		idx = 0

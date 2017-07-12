@@ -24,3 +24,7 @@ func BKDRHash(digest []byte) uint32 {
 	}
 	return h
 }
+
+func SetHashFunc(h hashFunc) {
+	defaultHashFunc = h
+}
