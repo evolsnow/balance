@@ -27,7 +27,7 @@ type dht struct {
 	ring      ring                // consistent hash ring
 }
 
-func NewDHTBalancer(etcdAddrs ...string) (grpc.Balancer, error) {
+func NewDHT(etcdAddrs ...string) (grpc.Balancer, error) {
 	d := &dht{h: defaultHashFunc}
 	if len(etcdAddrs) == 0 {
 		return d, nil

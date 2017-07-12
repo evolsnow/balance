@@ -25,7 +25,7 @@ type leastConn struct {
 	next      *lcEndpoints        //next endpoint to connect
 }
 
-func NewLeastConnBalancer(etcdAddrs ...string) (grpc.Balancer, error) {
+func NewLeastConn(etcdAddrs ...string) (grpc.Balancer, error) {
 	lc := &leastConn{}
 	if len(etcdAddrs) == 0 {
 		return lc, nil
